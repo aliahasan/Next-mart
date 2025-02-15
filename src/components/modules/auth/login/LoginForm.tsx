@@ -12,6 +12,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { loginUser, reCaptchaTokenVerification } from "@/services/authService";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -19,6 +21,12 @@ import { toast } from "sonner";
 import { loginSchema } from "./LoginValidation";
 
 export default function LoginForm() {
+  // const pathName = usePathname()
+
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirectPath");
+  const router = useRouter();
+
   const [reCaptchaStatus, setRecaptchaStatus] = useState(false);
 
   const form = useForm({
@@ -45,6 +53,11 @@ export default function LoginForm() {
       const res = await loginUser(data);
       if (res?.success) {
         toast.success(res?.message);
+        if (redirect) {
+          router.push(redirect);
+        } else {
+          router.push("/profile");
+        }
       } else {
         toast.error(res?.message || "Login failed! Try again.");
       }
@@ -108,6 +121,12 @@ export default function LoginForm() {
           </Button>
         </form>
       </Form>
+      <p className="text-sm text-gray-600 text-center my-3">
+        Do not have any account ?
+        <Link href="/register" className="text-primary">
+          Register
+        </Link>
+      </p>
     </div>
   );
 }
