@@ -38,7 +38,6 @@ const CreateCategory = () => {
       formData.append("data", JSON.stringify(data));
       formData.append("icon", imageFiles[0] as File);
       const res = await creteCategory(formData);
-      console.log(res);
       if (res.success) {
         toast.success(res.message);
       } else {
