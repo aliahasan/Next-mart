@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import * as React from "react";
 
-import Logo from "@/app/assets/svgs/Logo";
+import Logo from "@/assets/svgs/Logo";
 import {
   Sidebar,
   SidebarContent,

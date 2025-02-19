@@ -22,7 +22,7 @@ import {
   useForm,
 } from "react-hook-form";
 
-import Logo from "@/app/assets/svgs/Logo";
+import Logo from "@/assets/svgs/Logo";
 import {
   Select,
   SelectContent,

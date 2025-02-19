@@ -30,7 +30,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import Logo from "@/app/assets/svgs/Logo";
+import Logo from "@/assets/svgs/Logo";
 import { getAllBrands } from "@/services/brand";
 import { getAllCategories } from "@/services/category";
 import { updateProduct } from "@/services/product";
