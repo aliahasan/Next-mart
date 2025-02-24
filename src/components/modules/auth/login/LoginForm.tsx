@@ -56,7 +56,7 @@ export default function LoginForm() {
         if (redirect) {
           router.push(redirect);
         } else {
-          router.push("/profile");
+          router.push("/");
         }
       } else {
         toast.error(res?.message || "Login failed! Try again.");
