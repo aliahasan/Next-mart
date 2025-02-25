@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useUser } from "@/context/UserContext";
 import { loginUser, reCaptchaTokenVerification } from "@/services/authService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -22,6 +23,7 @@ import { loginSchema } from "./LoginValidation";
 
 export default function LoginForm() {
   // const pathName = usePathname()
+  const { setIsLoading } = useUser();
 
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirectPath");
@@ -51,6 +53,7 @@ export default function LoginForm() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data);
+      setIsLoading(true);
       if (res?.success) {
         toast.success(res?.message);
         if (redirect) {
