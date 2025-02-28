@@ -22,6 +22,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useUser } from "@/context/UserContext";
 import Link from "next/link";
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
@@ -36,7 +37,7 @@ const data = {
     },
     {
       title: "Shop",
-      url: "/user/shop/products",
+      url: "#",
       icon: Bot,
       items: [
         {
@@ -72,6 +73,12 @@ const data = {
   ],
   navSecondary: [
     {
+      title: "Dashboard",
+      url: "/admin/dashboard",
+      icon: SquareTerminal,
+      isActive: true,
+    },
+    {
       title: "Support",
       url: "#",
       icon: LifeBuoy,
@@ -102,6 +109,8 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const user = useUser();
+  const role = user?.user?.role;
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -121,7 +130,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        {role === "user" ? (
+          <NavMain items={data.navMain} />
+        ) : (
+          <NavMain items={data.navSecondary} />
+        )}
       </SidebarContent>
       <SidebarFooter>
         <NavUser />

@@ -70,7 +70,7 @@ export default function Navbar() {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <Link href="/user/dashboard">
+                  <Link href={`${user?.role}/dashboard`}>
                     <DropdownMenuItem>Dashboard</DropdownMenuItem>
                   </Link>
                   <DropdownMenuItem>My shop</DropdownMenuItem>

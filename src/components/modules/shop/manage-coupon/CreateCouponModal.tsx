@@ -43,7 +43,11 @@ export default function CreateCouponModal() {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const couponData = {
-      ...data,
+      code: data?.code,
+      discountType: data?.discountType,
+      discountValue: data?.discountValue,
+      minOrderAmount: data?.minOrderAmount,
+      maxDiscountAmount: data?.maxDiscountAmount,
       startDate: formatISO(data.startDate),
       endDate: formatISO(data.endDate),
     };

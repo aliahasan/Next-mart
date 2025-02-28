@@ -4,7 +4,6 @@ import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 const backendUrl = process.env.NEXT_PUBLIC_BASE_API;
-console.log(backendUrl);
 
 //create category
 export const creteCategory = async (data: FormData) => {
